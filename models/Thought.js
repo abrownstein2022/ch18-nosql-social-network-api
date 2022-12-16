@@ -1,5 +1,6 @@
 const { Schema, Types } = require('mongoose');
-import dateFns from 'date-fns'
+const dateFns = require('date-fns');
+const {formatDate} = require('./utils.js');  //it's a named export so must be inside curly braces and name must be identical
 
 const thoughtSchema = new Schema(
   {
@@ -10,25 +11,24 @@ const thoughtSchema = new Schema(
     thoughtText: {
       type: String,
       required: true,
-      maxlength: 1,
-      minlength: 280
+      maxlength: 280
     },
     createdAt: {
       type: Date,
       default: Date.now, // this is  long ugly number like 8761923434256
-      get: function(val){
-        return dateFns.format(val, 'HH:mm:SS d/yy')
-      },
+      get: formatDate
     },
     username: {
       type: String,
       required: true,  
     },
-    reactions: {  //like replies
-      type: Array,
-      required: false,  // starts with empty array
-      default: []
-    }
+    // This will include an array that holds all reactions
+    reactions: [reactionSchema],
+    // reactions: {  //like replies
+    //   type: Array,
+    //   required: false,  // starts with empty array
+    //   default: []
+    // }
   },
   {
     toJSON: {
