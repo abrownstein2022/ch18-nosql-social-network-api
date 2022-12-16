@@ -9,10 +9,11 @@ const regexDelimiter = /asdfasdfasdf/
 
 const userSchema = new Schema(
   {
-    userId: {
-      type: Schema.Types.ObjectId,
-      default: () => new Types.ObjectId()
-    },
+    // mongoose already generates a unique UUID: { _id: "1234-abcd-1234-abcd"}
+    // userId: {
+    //   type: Schema.Types.ObjectId,
+    //   default: () => new Types.ObjectId()
+    // },
     userName: {
       type: String,
       unique: true,

@@ -4,10 +4,10 @@ const {formatDate} = require('./utils.js');  //it's a named export so must be in
 
 const thoughtSchema = new Schema(
   {
-    thoughtId: {
-      type: Schema.Types.ObjectId,
-      default: () => new Types.ObjectId()
-    },
+    // thoughtId: {
+    //   type: Schema.Types.ObjectId,
+    //   default: () => new Types.ObjectId()
+    // },
     thoughtText: {
       type: String,
       required: true,
