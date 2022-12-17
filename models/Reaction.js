@@ -32,4 +32,5 @@ const reactionSchema = new Schema(
   }
 );
 
+//! A model is not created for Reactions, only the schema is used in "thought"s Model
 module.exports = reactionSchema;

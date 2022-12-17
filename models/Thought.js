@@ -1,10 +1,10 @@
-const { Schema, Types } = require('mongoose');
+const mongoose = require('mongoose');
 const dateFns = require('date-fns');
 //need to add this since reaction schema is in its own file but it's part of Thoughts schema too
 const reactionSchema = require('./reaction.js'); 
 const {formatDate} = require('./utils.js');  //it's a named export so must be inside curly braces and name must be identical
 
-const thoughtSchema = new Schema(
+const thoughtSchema = new mongoose.Schema(
   {
     // thoughtId: {
     //   type: Schema.Types.ObjectId,
@@ -40,4 +40,5 @@ const thoughtSchema = new Schema(
   }
 );
 
-module.exports = thoughtSchema;
+ThoughtModel = mongoose.model('thought', thoughtSchema, 'thought')
+module.exports = ThoughtModel;

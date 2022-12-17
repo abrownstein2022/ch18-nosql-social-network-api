@@ -10,11 +10,11 @@ const {
 } = require('../../controllers/thoughtController.js');
 
 // api/thoughts/
-router.route('/thoughts')
+router.route('/')
   .get(getThoughts)
   .post(createThought);
 
-router.route('/thoughts/:thought_id')
+router.route('/:thought_id')
   .get(getSingleThought)
   .put(updateThought)
   .delete(deleteThought)
@@ -22,7 +22,7 @@ router.route('/thoughts/:thought_id')
 
 // /api/thoughts/:id/reactions
 // this is a builder function that returns a self reference for chaining
-router.route('/thoughts/:thought_id/reactions')
+router.route('/:thought_id/reactions')
   .post(createReaction)
   .delete(deleteReaction);
 

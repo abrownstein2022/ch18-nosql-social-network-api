@@ -1,4 +1,4 @@
-const { Schema, Types } = require('mongoose');
+const mongoose = require('mongoose');
 
 // const validateFunc = email => {
 //   return email.test(/regex/g)
@@ -7,7 +7,7 @@ const { Schema, Types } = require('mongoose');
 const emailRegExp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
 const regexDelimiter = /asdfasdfasdf/
 
-const userSchema = new Schema(
+const userSchema = new mongoose.Schema(
   {
     // mongoose already generates a unique UUID: { _id: "1234-abcd-1234-abcd"}
     // userId: {
@@ -66,4 +66,8 @@ userSchema
   })
   */
 
-module.exports = userSchema;
+//  now that we defined the schema, we can create a mongoose model to export and use
+// mongoose.model(<model-name>, <model-schema>, <force-model-name>)  sometimes mongoose will add an s - user => users
+UserModel = mongoose.model('user', userSchema, 'user')
+
+module.exports = UserModel;

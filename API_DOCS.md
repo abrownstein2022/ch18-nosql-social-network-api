@@ -1,6 +1,3 @@
-# API
-
-
 ## USERS
 `api/users`  
     - GET: return all users  
