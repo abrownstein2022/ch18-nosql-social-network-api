@@ -2,7 +2,6 @@ const { ObjectId } = require('mongoose').Types;
 const { Thought } = require('../models');
 
 
-
 module.exports = {
   // Get all thought
   getThoughts(req, res) {
@@ -57,10 +56,28 @@ module.exports = {
       });
   },
 
+  //  Update a thought 
+  updateThought(req, res) {
+    // attempt to find and delete a thought by id
+    Thought.findOneAndUpdate({ _id: req.params.thoughtId }, { thoughtText: req.body.thoughtText})
+      .then((thought) =>
+        // if the thought is not found: return error message
+        !thought
+          ? res.status(404).json({ message: 'No such thought exists' })
+          : res.status(200).json({ message: 'Thought updated' })
+ 
+      )
+
+      .catch((err) => {
+        console.log(err);
+        res.status(500).json(err);
+      });
+  },
+
   //alexis start here
 // create a new reaction
 createReaction(req, res) {
-  Thought.create(req.body)
+  Reaction.create(req.body)
     .then((reaction) => res.json(reaction))
     .catch((err) => res.status(500).json(err));
 },
@@ -72,13 +89,14 @@ deleteReaction(req, res) {
       // if the reaction is not found: return error message
       !reaction
         ? res.status(404).json({ message: 'No such reaction exists' })
+        : res.status(200).json({ message: 'Reaction deleted' })
         // // if thought is found: use the "thought.username" to find and update the user => "pull" the "thought.id" from the "thoughts" array
         //alexis 12/17/22 we don't really n eed this below since already handled in thought but this is requiring :
-        : User.findOneAndUpdate(
-            { username: reaction.username },
-            { $pull: { reactions: reaction._id } },
-            { new: true }
-          )
+        // : User.findOneAndUpdate(
+        //     { username: reaction.username },
+        //     { $pull: { reactions: reaction._id } },
+        //     { new: true }
+        //   )
     )
     // .then((user) =>
     //   !user
