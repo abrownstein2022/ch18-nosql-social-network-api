@@ -1,4 +1,5 @@
 const { Schema, Types } = require('mongoose');
+const {formatDate} = require('./utils.js');
 
 const reactionSchema = new Schema(
   {
@@ -30,17 +31,5 @@ const reactionSchema = new Schema(
     id: false,
   }
 );
-
-// Create a virtual property `commentCount` that gets the amount of comments per user
-userSchema
-  .virtual('friendCount')
-  // Getter
-  .get(() =>  this.friends.length)
-  // same as:
-  /*
-  .get(function () {
-    return this.friends.length
-  })
-  */
 
 module.exports = reactionSchema;
