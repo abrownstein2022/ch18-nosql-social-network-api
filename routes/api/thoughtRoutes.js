@@ -20,7 +20,7 @@ router.route('/:thought_id')
   .delete(deleteThought)
 
 
-// /api/thoughts/:id/reactions
+//! /api/thoughts/:thought_id/reactions
 // this is a builder function that returns a self reference for chaining
 router.route('/:thought_id/reactions')
   .post(createReaction)

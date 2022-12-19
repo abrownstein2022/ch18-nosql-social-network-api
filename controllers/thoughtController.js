@@ -14,7 +14,7 @@ module.exports = {
   },
   // Get a single thought
   getSingleThought(req, res) {
-    Thought.findOne({ _id: req.params.thoughtId })
+    Thought.findOne({ _id: req.params.thought_id })
       .select('-__v')
       .then(thought => res.json(thought))
       .catch((err) => {
@@ -31,7 +31,7 @@ module.exports = {
   // Delete a thought 
   deleteThought(req, res) {
     // attempt to find and delete a thought by id
-    Thought.findOneAndRemove({ _id: req.params.thoughtId })
+    Thought.findOneAndRemove({ _id: req.params.thought_id })
       .then((thought) =>
         // if the thought is not found: return error message
         !thought
@@ -59,7 +59,7 @@ module.exports = {
   //  Update a thought 
   updateThought(req, res) {
     // attempt to find and delete a thought by id
-    Thought.findOneAndUpdate({ _id: req.params.thoughtId }, { thoughtText: req.body.thoughtText})
+    Thought.findOneAndUpdate({ _id: req.params.thought_id }, { thoughtText: req.body.thoughtText})
       .then((thought) =>
         // if the thought is not found: return error message
         !thought
@@ -84,7 +84,7 @@ createReaction(req, res) {
 // Delete a reaction 
 deleteReaction(req, res) {
   // attempt to find and delete a thought by id
-  Reaction.findOneAndRemove({ _id: req.params.reactionId })
+  Reaction.findOneAndRemove({ _id: req.params.reaction_id })
     .then((reaction) =>
       // if the reaction is not found: return error message
       !reaction
