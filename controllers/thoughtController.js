@@ -1,5 +1,5 @@
 const { ObjectId } = require('mongoose').Types;
-const { Thought, User } = require('../models');
+const { Thought, User, Reaction } = require('../models');
 const errorHandler = require('./errorHandler');
 
 
@@ -90,38 +90,47 @@ module.exports = {
   //alexis start here
 // create a new reaction
 createReaction(req, res) {
-  Reaction.create(req.body)
-    .then((reaction) => res.json(reaction))
-    .catch((err) => res.status(500).json(err));
+  // Reaction.create(req.body)
+  //   .then((reaction) => res.json(reaction))
+  //   .catch(errorHandler);
+
+    //- models have methods like 'find()' and 'findAndUpdate()'
+    //- schemas can only be interacted witth inside of another model
+    Thought.findOneAndUpdate({ 
+      _id: req.params.thought_id 
+    }, { 
+      //- push a new reaction to the thought.reactions array - using the reaction schema
+      $push: { reactions: req.body }
+    })
+      .then((thought) =>
+        // if the thought is not found: return error message
+        !thought
+          ? res.status(404).json({ message: 'No such thought exists' })
+          : res.status(200).json({ message: 'Reaction added to thought' })
+ 
+      )
+
 },
+
+
+
 // Delete a reaction 
 deleteReaction(req, res) {
-  // attempt to find and delete a thought by id
-  Reaction.findOneAndRemove({ _id: req.params.reaction_id })
-    .then((reaction) =>
-      // if the reaction is not found: return error message
-      !reaction
-        ? res.status(404).json({ message: 'No such reaction exists' })
-        : res.status(200).json({ message: 'Reaction deleted' })
-        // // if thought is found: use the "thought.userName" to find and update the user => "pull" the "thought.id" from the "thoughts" array
-        //alexis 12/17/22 we don't really n eed this below since already handled in thought but this is requiring :
-        // : User.findOneAndUpdate(
-        //     { userName: reaction.userName },
-        //     { $pull: { reactions: reaction._id } },
-        //     { new: true }
-        //   )
+  // attempt to find and delete a reaction within a thought by id
+
+  Thought.findOneAndUpdate({ 
+    _id: req.params.thought_id 
+  }, { 
+    //- push a new reaction to the thought.reactions array - using the reaction schema
+    $pull: { reactions: { _id: req.body.reactionId} } // req.body === '{ reactionId: '12341234' }' => like saying where: {  reactionId: reactionId }
+  })
+    .then((thought) =>
+      // if the thought is not found: return error message
+      !thought
+        ? res.status(404).json({ message: 'No such thought exists' })
+        : res.status(200).json({ message: 'Reaction added to thought' })
+
     )
-    // .then((user) =>
-    //   !user
-    //     ? res.status(404).json({
-    //         message: 'Thought deleted, but no user found',
-    //       })
-    //     : res.json({ message: 'Thought successfully deleted' })
-    // )
-    .catch((err) => {
-      console.log(err);
-      res.status(500).json(err);
-    });
 },
 
 };

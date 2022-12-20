@@ -1,12 +1,12 @@
-const { Schema, Types } = require('mongoose');
+const { Schema, Types, default: mongoose } = require('mongoose');
 const {formatDate} = require('./utils.js');
 
 const reactionSchema = new Schema(
   {
-    reactionId: {
-      type: Schema.Types.ObjectId,
-      default: () => new Types.ObjectId()
-    },
+    // reactionId: {
+    //   type: Schema.Types.ObjectId,
+    //   default: () => new Types.ObjectId()
+    // },
     reactionBody:{
       type: String,
       required: true,  //same as minlength 1
@@ -14,6 +14,10 @@ const reactionSchema = new Schema(
     },
     userName: {
       type: String,
+      required: true
+    },
+    userId: {
+      type: mongoose.Schema.Types.ObjectId,
       required: true
     },
     createdAt: {
