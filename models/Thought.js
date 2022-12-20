@@ -20,9 +20,14 @@ const thoughtSchema = new mongoose.Schema(
       default: Date.now, // this is  long ugly number like 8761923434256
       get: formatDate
     },
-    username: {
+    userName: {
       type: String,
       required: true,  
+    },
+    //- added this to better identtify the user - username likey to encounter collision
+    userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true
     },
     // This will include an array that holds all reactions
     reactions: [reactionSchema],

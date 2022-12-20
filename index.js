@@ -8,7 +8,9 @@ const marked = require('marked')
 const fs = require('fs')
 const path = require('path')
 
-const PORT = process.env.PORT || 3001;
+//chnaged 3001 to 3000 below to work with insomnia that defaults to 3000
+//const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3000;
 const app = express();
 
 app.use(express.urlencoded({ extended: true }));
@@ -28,8 +30,19 @@ const apiData = fs.readFileSync(path.join(__dir, '/API_DOCS.md'), { encoding: 'u
 // if user navigates to wrong route - send API docs
 app.use((req, res) => res.send(marked.parse(`# No Route Found\n"${req.path}"\n---\n${apiData}`)));
 
+//- tell express to use a custtom error handler
+const errorHandler = (err, req, res, next) => {
+  console.error('There was an error with the express server. You may need to restart')
+  console.error(err)
+}
+
+app.use(errorHandler)
+
 mongoose.connection.once('open', () => {
   app.listen(PORT, () => {
     console.log(`API server running on port ${PORT}!`);
   });
 });
+
+// mongoose isa type of event emitter (can subscribe and listen for events)
+// monogoose.connection.on('error', (err) => console.log('>>> ERROR:', err))

@@ -1,4 +1,5 @@
 const { User, Thought } = require('../models');
+const errorHandler = require('./errorHandler.js')
 
 module.exports = {
   // Get all users
@@ -16,26 +17,26 @@ module.exports = {
           ? res.status(404).json({ message: 'No user with that ID' })
           : res.json(user)
       )
-      .catch((err) => res.status(500).json(err));
+      .catch((err) => res.status(400).json(err));
   },
   // Create a user
   createUser(req, res) {
     User.create(req.body)
       .then((user) => res.json(user))
-      .catch((err) => {
-        console.log(err);
-        return res.status(500).json(err);
-      });
+      .catch(errorHandler);
   },
   // Delete a user
   deleteUser(req, res) {
+    // In the then block below: the return was modified so that the user is passed to the next tthen block
     User.findOneAndDelete({ _id: req.params.user_id })
-      .then((user) =>
+      .then((user) => {
         !user
           ? res.status(404).json({ message: 'No user with that ID' })
-          : Thought.deleteMany({ _id: { $in: user.students } })
-      )
-      .then(() => res.json({ message: 'User deleted!' }))
+          : Thought.deleteMany({ _id: { $in: req.params.user_id } })
+
+        return user
+      })
+      .then((user) => user && res.json({ message: 'User deleted!' }))
       .catch((err) => res.status(500).json(err));
   },
   // Update a user

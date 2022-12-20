@@ -1,5 +1,6 @@
 const { ObjectId } = require('mongoose').Types;
-const { Thought } = require('../models');
+const { Thought, User } = require('../models');
+const errorHandler = require('./errorHandler');
 
 
 module.exports = {
@@ -24,9 +25,21 @@ module.exports = {
   },
   // create a new thought
   createThought(req, res) {
+    console.log('POST `/api/thought/` - create a thought:', req.body)
     Thought.create(req.body)
-      .then((thought) => res.json(thought))
-      .catch((err) => res.status(500).json(err));
+      .then((thought) => {
+        thought
+          ? User.findOneAndUpdate(
+            { _id: thought.userId },
+            { $push: { thoughts: thought._id } },
+            { new: true }
+          )
+          : res.json({ message: 'Thought was not createtd successfully', value: thought,})
+
+          return thought
+      })
+      .then(thought => thought && res.status(200).json({ message: 'Though was created!'}))
+      .catch(errorHandler);
   },
   // Delete a thought 
   deleteThought(req, res) {
@@ -36,9 +49,9 @@ module.exports = {
         // if the thought is not found: return error message
         !thought
           ? res.status(404).json({ message: 'No such thought exists' })
-          // if thought is found: use the "thought.username" to find and update the user => "pull" the "thought.id" from the "thoughts" array
+          // if thought is found: use the "thought.userName" to find and update the user => "pull" the "thought.id" from the "thoughts" array
           : User.findOneAndUpdate(
-              { username: thought.username },
+              { userName: thought.userName },
               { $pull: { thoughts: thought._id } },
               { new: true }
             )
@@ -90,10 +103,10 @@ deleteReaction(req, res) {
       !reaction
         ? res.status(404).json({ message: 'No such reaction exists' })
         : res.status(200).json({ message: 'Reaction deleted' })
-        // // if thought is found: use the "thought.username" to find and update the user => "pull" the "thought.id" from the "thoughts" array
+        // // if thought is found: use the "thought.userName" to find and update the user => "pull" the "thought.id" from the "thoughts" array
         //alexis 12/17/22 we don't really n eed this below since already handled in thought but this is requiring :
         // : User.findOneAndUpdate(
-        //     { username: reaction.username },
+        //     { userName: reaction.userName },
         //     { $pull: { reactions: reaction._id } },
         //     { new: true }
         //   )

@@ -58,7 +58,7 @@ const userSchema = new mongoose.Schema(
 userSchema
   .virtual('friendCount')
   // Getter
-  .get(() =>  this.friends.length)
+  .get(() => this?.friends?.length ?? 0)
   // same as:
   /*
   .get(function () {
