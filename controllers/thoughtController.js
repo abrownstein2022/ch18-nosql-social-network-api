@@ -30,15 +30,16 @@ module.exports = {
       .then((thought) => {
         thought
           ? User.findOneAndUpdate(
-            { _id: thought.userId },
+            { _id: req.body.userId },
             { $push: { thoughts: thought._id } },
             { new: true }
           )
+          .catch(errorHandler)
           : res.json({ message: 'Thought was not createtd successfully', value: thought,})
 
           return thought
       })
-      .then(thought => thought && res.status(200).json({ message: 'Though was created!'}))
+      .then(thought => thought && res.status(200).json({ message: 'Thought was created!'}))
       .catch(errorHandler);
   },
   // Delete a thought 
@@ -102,6 +103,7 @@ createReaction(req, res) {
       //- push a new reaction to the thought.reactions array - using the reaction schema
       $push: { reactions: req.body }
     })
+     //need this to resolve the request and respond
       .then((thought) =>
         // if the thought is not found: return error message
         !thought

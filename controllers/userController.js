@@ -2,6 +2,13 @@ const { User, Thought } = require('../models');
 const errorHandler = require('./errorHandler.js')
 
 module.exports = {
+
+  // remove all data
+  async cleanUp(req, res){
+    await User.deleteMany()
+    await Thought.deleteMany()
+    res.status(200).json({ message: 'All values deleted' })
+  },
   // Get all users
   getUsers(req, res) {
     User.find()
@@ -27,18 +34,26 @@ module.exports = {
   },
   // Delete a user
   deleteUser(req, res) {
-    // In the then block below: the return was modified so that the user is passed to the next tthen block
+    console.log('deleting user:', {
+      params: req.params,
+      body: req.body
+    })
+    // In the then block below: the return was modified so that the user is passed to the next then block
     User.findOneAndDelete({ _id: req.params.user_id })
       .then((user) => {
-        !user
-          ? res.status(404).json({ message: 'No user with that ID' })
-          : Thought.deleteMany({ _id: { $in: req.params.user_id } })
+        if(user){
+          Thought.deleteMany({ userId : req.params.user_id } )
+          .then((thought) => thought && res.json({ message: 'User and thought deleted!' }))
+        .catch((err) => res.status(500).json({message: 'Error deleting thoughts', value: err }));
 
-        return user
+        }else{
+          res.status(404).json({ message: 'No user with that ID' })
+        }
+
       })
-      .then((user) => user && res.json({ message: 'User deleted!' }))
       .catch((err) => res.status(500).json(err));
   },
+
   // Update a user
   updateUser(req, res) {
     User.findOneAndUpdate(
@@ -60,6 +75,13 @@ module.exports = {
       { $push: { friends: req.params.friend_id } },
       { new: true }
     )
+     //need this to resolve the request and respond
+     .then((user) =>
+     // if the user is not found: return error message
+     !user
+       ? res.status(404).json({ message: 'No such user exists' })
+       : res.status(200).json({ message: 'Friend added to user' })
+   )
   },
 
   removeFriend(req, res) {
@@ -68,5 +90,15 @@ module.exports = {
       { $pull: { friends: req.params.friend_id } },
       { new: true }
     )
+      //need this to resolve the request and respond   
+    .then((user) =>
+    // if the user is not found: return error message
+    !user
+      ? res.status(404).json({ message: 'No such user exists' })
+      : res.status(200).json({ message: 'Friend removed from user' })
+  )
   },
 };
+
+//can also do below and not combine functions above with commas
+//module.exports= {asdfasdf, asdfasdf, asdfasdf, adsfasdf}
