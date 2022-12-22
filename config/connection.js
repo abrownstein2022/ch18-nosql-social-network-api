@@ -13,7 +13,7 @@ mongoose.connect(connectionString, {
   useUnifiedTopology: true,
 });
 
-// also safe to listten for error events 
+// also safe to lisen for error events 
 mongoose.connection.on('error', (data) => {
   console.log('MONGOOSE CONNECTION ERROR:', data)
 })

@@ -96,7 +96,7 @@ createReaction(req, res) {
   //   .catch(errorHandler);
 
     //- models have methods like 'find()' and 'findAndUpdate()'
-    //- schemas can only be interacted witth inside of another model
+    //- schemas can only be interacted with inside of another model
     Thought.findOneAndUpdate({ 
       _id: req.params.thought_id 
     }, { 

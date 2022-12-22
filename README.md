@@ -10,7 +10,7 @@
 - [License](#license)
 - [Features](#features)
 - [How-to-Contribute](#how-to-contribute)
-- [Tests](#test-instructions)
+- [Tests](#tests)
 - [Questions](#questions)
 
 ## Description
@@ -38,43 +38,39 @@ THEN I am able to successfully create, update, and delete users and thoughts in 
 WHEN I test API POST and DELETE routes in Insomnia
 THEN I am able to successfully create and delete reactions to thoughts and add and remove friends to a user’s friend list
 
-
 ```
 
 ## Installation
 <!-- audience is other developers -->
 
-1. Clone this GitHub repo https://github.com/abrownstein2022/ch12-sql-employee-tracker:
+1. Clone this GitHub repo https://github.com/abrownstein2022/ch18-nosql-social-network-api
 <!-- Check out the gh cli tool from github -->
 ```bash
-$ gh repo clone /abrownstein2022/ch12-sql-employee-tracker
+$ gh repo clone /abrownstein2022/ch18-nosql-social-network-api
 ```
 
-2. From the terminal, install npm, mysql2, inqurier v8.2.4 and npmjs console.table packages:
+2. From the terminal, install npm, date-fns and moongoose 6.8.0 packages:
 
 ```bash
 $ npm i
-$ npm install mysql
-$ npm install inquirer@8.2.4
-$ npm install console.table --save
+$ npm install date-fns
+$ npm install mongoose@6.8.0
 
-```
-
-3. Log into mysql, create the database on your local machine and seed the database:
-
-```bash
-$ mysql -u root -p 
-mysql> source db/schema.sql
-mysql> source db/seeds.sql
 ```
 
 ## Usage
+1. You will need 2 terminal sessions to use this application.
 
-**To start the application, go to the Terminal and enter the line below:**
+1. In one of the terminal sessions, start up the mongo server:
+```bash
+mongod
+```
+1. In the other terminal session, run the application:
 ```bash
 $npm start
 ```
-**Then follow the screenshots below:**<br>
+
+**The screenshots below show different workings of the application:**<br>
 ![example image 1 main menu](./assets/images/ch12-screen1-mainmenu.jpg)
 
 ![example image 2 main menu](./assets/images/ch12-screen2-mainmenu.jpg)
@@ -95,9 +91,9 @@ $npm start
 
 ![example image 10 3 bonus views](./assets/images/ch12-screen10-bonus-views.jpg)
 
-**Please also review the following demonstration video:**
+**Please review the demonstration video below to see the entire application working:**
 
-![demo video of how to use this application](./assets/images/ch12-sql-employee-tracker-demo.gif)
+![demo video of how to use this application](./assets/images/ch18-nosql-demo.gif)
 
 
 ## Credits
@@ -138,22 +134,55 @@ _underline_
 
 1. numberd
 1. list
-1. all ones - auttomatic numbering
-Feattures for *future* development
+1. all ones - automatic numbering
+Features for *future* development
  -->
 **The main features in this project are:**<br>
-1. Uses Node.js, Inqurier, MySQL and npmjs console.table
+1. Uses Node.js, Inquirer, Express, Insomnia, Mongo DB and Mongoose
 1. Example screenshots and a demonstration video
 1. Necessary folder structure 
 1. Professional README
+
 
 ## How-to-Contribute
 
 N/A
 
-## Test Instructions
+## Tests
 
-N/A
+This application was tested with Insomnia using the routes below.
+
+*USERS*
+```md
+`api/users`  
+    - GET: return all users  
+    - POST: create a new user  
+
+`api/users/:user_id`  
+    - GET: a single user by `_id`  
+    - PUT: update a user by `_id`  
+    - DELETE: delete a user by `_id`  
+
+`api/users/:user_id/friends/:friend_id`  
+    - POST: add a new friend to the users list 
+    - DELETE: remove a friend from the users friend list
+```
+
+*THOUGHTS*
+```md
+`api/thoughts`  
+    - GET: get all thoughts  
+    - POST: create a new thought  
+
+`api/thoughts/:thought_id`  
+    - GET: get a thought by its `_id`  
+    - PUT: update a thought by its `_id`  
+    - DELETE: delete a thought by its `_id`  
+
+`api/thoughts/:thought_id/reactions`  
+    - POST: create and add a reaction to the thoughts reactions list  
+    - DELETE: delete a reaction by its thought id 
+```
 
 ## Questions
 

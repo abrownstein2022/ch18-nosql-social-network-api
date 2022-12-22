@@ -9,8 +9,8 @@
     - DELETE: delete a user by `_id`  
 
 `api/users/:user_id/friends/:friend_id`  
-    - POST: add a new friend to the users list  
-    - DELETE: remove a friend from the users friend listt  
+    - POST: add a new friend to the users list 
+    - DELETE: remove a friend from the users friend list
 
 ## THOUGHTS
 `api/thoughts`  
@@ -23,5 +23,5 @@
     - DELETE: delete a thought by its `_id`  
 
 `api/thoughts/:thought_id/reactions`  
-    - POST: create and add a reaction to the tthoughts reactions list  
+    - POST: create and add a reaction to the thoughts reactions list  
     - DELETE: delete a reaction by its thought id  

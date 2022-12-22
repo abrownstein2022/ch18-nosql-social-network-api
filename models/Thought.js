@@ -24,7 +24,7 @@ const thoughtSchema = new mongoose.Schema(
       type: String,
       required: true,  
     },
-    //- added this to better identtify the user - username likey to encounter collision
+    //- added this to better identify the user - username likely to encounter collision
     userId: {
         type: mongoose.Schema.Types.ObjectId,
         required: true
