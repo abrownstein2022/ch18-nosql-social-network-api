@@ -70,6 +70,12 @@ mongod
 $npm start
 ```
 
+Or to start with nodemon
+
+```bash
+$npm run dev
+```
+
 **The screenshots below show different workings of the application:**<br>
 ![example image 1 main menu](./assets/images/ch12-screen1-mainmenu.jpg)
 
