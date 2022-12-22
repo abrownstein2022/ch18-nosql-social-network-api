@@ -142,6 +142,7 @@ Features for *future* development
 1. Example screenshots and a demonstration video
 1. Necessary folder structure 
 1. Professional README
+1. Utils.js file in models to handle global functions used
 
 
 ## How-to-Contribute
