@@ -54,11 +54,15 @@ const userSchema = new mongoose.Schema(
   }
 );
 
-// Create a virtual property `commentCount` that gets the amount of comments per user
-userSchema
-  .virtual('friendCount')
-  // Getter
-  .get(() => this?.friends?.length ?? 0)
+userSchema.virtual('friendCount').get(function () {
+  return this.friends.length;
+});
+
+// Create a virtual property `commentCount` that gets the number of friends per user
+// userSchema
+//   .virtual('friendCount')
+//   // Getter
+//   .get(() => this?.friends?.length ?? 0)
   // same as:
   /*
   .get(function () {

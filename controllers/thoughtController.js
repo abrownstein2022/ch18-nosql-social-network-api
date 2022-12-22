@@ -130,7 +130,7 @@ deleteReaction(req, res) {
       // if the thought is not found: return error message
       !thought
         ? res.status(404).json({ message: 'No such thought exists' })
-        : res.status(200).json({ message: 'Reaction added to thought' })
+        : res.status(200).json({ message: 'Reaction removed from thought' })
 
     )
 },
