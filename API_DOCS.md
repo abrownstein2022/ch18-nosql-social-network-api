@@ -6,7 +6,7 @@
 `api/users/:user_id`  
     - GET: a single user by `_id`  
     - PUT: update a user by `_id`  
-    - DELETE: delete a user by `_id`  
+    - DELETE: delete a user by `_id`  (and also delete their thoughts if any exist)
 
 `api/users/:user_id/friends/:friend_id`  
     - POST: add a new friend to the users list 

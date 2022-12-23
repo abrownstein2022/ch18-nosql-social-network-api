@@ -94,6 +94,32 @@ $npm run dev
 
 ![demo video of how to use this application](./assets//ch18-nosql-demo.gif)
 
+**Please see the screenshots below to specifically review that thoughts are deleted when users are deleted.**
+
+Run "find all users" to see no users have been created yet.
+![example image 1 delete thoughts when user deleted](./assets/ch18-screen1-show-delete-user-thoughts.png)
+
+Create new user brandon.
+![example image 2 delete thoughts when user deleted](./assets/ch18-screen2-show-delete-user-thoughts.png)
+
+Create thought for user brandon.
+![example image 3 delete thoughts when user deleted](./assets/ch18-screen3-show-delete-user-thoughts.png)
+
+View all thoughts to confirm the new thought has been created for Brandon.
+![example image 4 delete thoughts when user deleted](./assets/ch18-screen4-show-delete-user-thoughts.png)
+
+View all users to confirm again that the new thought has been tied to Brandon's userid. 
+![example image 5 delete thoughts when user deleted](./assets/ch18-screen5-show-delete-user-thoughts.png)
+
+Delete the user.<br>
+![example image 6 delete thoughts when user deleted](./assets/ch18-screen6-show-delete-user-thoughts.png)
+
+View all users to confirm user brandon has been deleted.
+![example image 7 delete thoughts when user deleted](./assets/ch18-screen7-show-delete-user-thoughts.png)
+
+View all thoughts to confirm brandon's thought was also deleted. 
+![example image 8 delete thoughts when user deleted](./assets/ch18-screen8-show-delete-user-thoughts.png)
+
 ## Credits
 
 ```md
@@ -161,7 +187,7 @@ This application was tested with Insomnia using the routes below.
 `api/users/:user_id`  
     - GET: a single user by `_id`  
     - PUT: update a user by `_id`  
-    - DELETE: delete a user by `_id`  
+    - DELETE: delete a user by `_id`  (and also delete their thoughts if any exist)
 
 `api/users/:user_id/friends/:friend_id`  
     - POST: add a new friend to the users list 
