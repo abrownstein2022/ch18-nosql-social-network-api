@@ -14,7 +14,10 @@
 - [Questions](#questions)
 
 ## Description
-The task for this assignment was to build an API for a social network web application using MongoDB, express.js and the Mongoose ODM.  The application was tested using Insomnia.
+```md
+The task for this assignment was to build an API for a social network web application using MongoDB, express.js and the Mongoose ODM.  
+The application was tested using Insomnia. I also used date-fns to format dates.
+```
 
 **User Story**
 
@@ -22,7 +25,6 @@ The task for this assignment was to build an API for a social network web applic
 AS A social media startup
 I WANT an API for my social network that uses a NoSQL database
 SO THAT my website can handle large amounts of unstructured data
-
 ```
 
 **Acceptance Criteria**
@@ -37,7 +39,6 @@ WHEN I test API POST, PUT, and DELETE routes in Insomnia
 THEN I am able to successfully create, update, and delete users and thoughts in my database
 WHEN I test API POST and DELETE routes in Insomnia
 THEN I am able to successfully create and delete reactions to thoughts and add and remove friends to a user’s friend list
-
 ```
 
 ## Installation
@@ -93,7 +94,6 @@ $npm run dev
 
 ![demo video of how to use this application](./assets//ch18-nosql-demo.gif)
 
-
 ## Credits
 
 ```md
@@ -141,6 +141,7 @@ Features for *future* development
 1. Necessary folder structure 
 1. Professional README
 1. Utils.js file in models folder to handle global functions used
+1. date-fns used to format dates
 
 
 ## How-to-Contribute
