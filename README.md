@@ -49,23 +49,23 @@ THEN I am able to successfully create and delete reactions to thoughts and add a
 $ gh repo clone /abrownstein2022/ch18-nosql-social-network-api
 ```
 
-2. From the terminal, install npm, date-fns and moongoose 6.8.0 packages:
+2. From the terminal, install npm, express, date-fns and moongoose 6.8.0 packages:
 
 ```bash
 $ npm i
+$ npm install express
 $ npm install date-fns
 $ npm install mongoose@6.8.0
-
 ```
 
 ## Usage
 1. You will need 2 terminal sessions to use this application.
 
-1. In one of the terminal sessions, start up the mongo server:
+2. In one of the terminal sessions, start up the mongo server:
 ```bash
 mongod
 ```
-1. In the other terminal session, run the application:
+3. In the other terminal session, run the application:
 ```bash
 $npm start
 ```
@@ -76,30 +76,22 @@ Or to start with nodemon
 $npm run dev
 ```
 
-**The screenshots below show different workings of the application:**<br>
-![example image 1 main menu](./assets/images/ch12-screen1-mainmenu.jpg)
+**The screenshots below show different functionality of the application:**<br>
+![example image 1 terminal start commands](./assets/ch18-image1-terminal-start-commands.png)
 
-![example image 2 main menu](./assets/images/ch12-screen2-mainmenu.jpg)
+![example image 2 create user insomnia](./assets/ch18-image2-create-user-insomnia.png)
 
-![example image 3 main menu](./assets/images/ch12-screen3-mainmenu.jpg)
+![example image 3 find user insomnia](./assets/ch18-image3-find-users-insomnia.png)
 
-![example image 4 view all employees](./assets/images/ch12-screen4-view-all-emp.jpg)
+![example image 4 update user insomnia](./assets/ch18-image4-update-user-insomnia.png)
 
-![example image 5 view all roles and departments](./assets/images/ch12-screen5-view-all-roles-depts.jpg)
+![example image 5 delete user insomnia](./assets/ch18-image5-del-user-insomnia.png)
 
-![example image 6 add employee ](./assets/images/ch12-screen6-add-emp.jpg)
+![example image 6 get thoughts insomnia](./assets/ch18-image6-get-thoughts-insomnia.png)
 
-![example image 7 update employee role](./assets/images/ch12-screen7-upd-emp-role.jpg)
+**Please review the demonstration video below to see, step-by-step, how the entire application works:**
 
-![example image 8 add department](./assets/images/ch12-screen8-add-dept.jpg)
-
-![example image 9 add role](./assets/images/ch12-screen9-add-role.jpg)
-
-![example image 10 3 bonus views](./assets/images/ch12-screen10-bonus-views.jpg)
-
-**Please review the demonstration video below to see the entire application working:**
-
-![demo video of how to use this application](./assets/images/ch18-nosql-demo.gif)
+![demo video of how to use this application](./assets//ch18-nosql-demo.gif)
 
 
 ## Credits
@@ -148,7 +140,7 @@ Features for *future* development
 1. Example screenshots and a demonstration video
 1. Necessary folder structure 
 1. Professional README
-1. Utils.js file in models to handle global functions used
+1. Utils.js file in models folder to handle global functions used
 
 
 ## How-to-Contribute
@@ -200,6 +192,3 @@ I can be reached at alexis@drdatabase.com.
 This GitHub repo can be found at:
   
 https://github.com/abrownstein2022/ch18-nosql-social-network-api
- 
-
-
