@@ -1,4 +1,4 @@
-# Challenge 18 NoSQL: Social Network API
+#  NoSQL: Social Network API
 ![license](https://img.shields.io/badge/license-MIT-black)
 
 ## Table of Contents
@@ -15,7 +15,7 @@
 
 ## Description
 ```md
-The task for this assignment was to build an API for a social network web application using MongoDB, express.js and the Mongoose ODM.  
+The task for this project builds an API for a social network web application using MongoDB, express.js and the Mongoose ODM.  
 The application was tested using Insomnia. I also used date-fns to format dates.
 ```
 
@@ -44,10 +44,10 @@ THEN I am able to successfully create and delete reactions to thoughts and add a
 ## Installation
 <!-- audience is other developers -->
 
-1. Clone this GitHub repo https://github.com/abrownstein2022/ch18-nosql-social-network-api
+1. Clone this GitHub repo https://github.com/abrownstein2022/nosql-social-network-api
 <!-- Check out the gh cli tool from github -->
 ```bash
-$ gh repo clone /abrownstein2022/ch18-nosql-social-network-api
+$ gh repo clone /abrownstein2022/nosql-social-network-api
 ```
 
 2. From the terminal, install npm, express, date-fns and moongoose 6.8.0 packages:
@@ -218,4 +218,4 @@ I can be reached at alexis@drdatabase.com.
 
 This GitHub repo can be found at:
   
-https://github.com/abrownstein2022/ch18-nosql-social-network-api
+https://github.com/abrownstein2022/nosql-social-network-api
